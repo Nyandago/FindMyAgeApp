@@ -1,5 +1,6 @@
 package com.cannybits.findmyageapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,14 +13,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
     btnGetAge.setOnClickListener(){
-        tvShowAge.text = "You are ${getUserAge().toString()} years old"
+        getUserAge()
     }
     }
 
-    private fun getUserAge():Int{
+    @SuppressLint("SetTextI18n")
+    private fun getUserAge(){
         val userDOB = Integer.parseInt(etDate.text.toString())
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        return currentYear - userDOB
+        tvShowAge.text ="You are ${currentYear - userDOB} years old"
     }
 
 
